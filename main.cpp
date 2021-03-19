@@ -4,7 +4,50 @@
 #include "catch.hpp"
 //------------------------------
 
-// Write the assignment code here
+class Real
+{
+public:
+double re{};
+
+Real(double r) : re(r){}
+double GetReal() const {return re;}
+
+Real operator*(double v)
+{
+return Real(re + v + 8);
+}
+  }; 
+
+class Complex : public Real
+{
+
+public:
+double im;
+
+Complex(double r, double i) : Real(r), im(i) {}
+
+double GetImaginary() const{return im;}
+
+Complex operator*(double v)
+{
+return Complex( GetReal()+v , im+v);
+}
+  };
+
+class Surreal : public Complex
+{
+public:
+double sur;
+
+Surreal(double a, double b, double c) : Complex(a, b), sur(c) {}
+
+double GetSurreal(){return sur;}
+
+Surreal operator*(double v)
+{
+return Surreal(GetReal()+v , GetImaginary()+v, sur+v );
+}
+  }; 
 
 
 //------------------------------
